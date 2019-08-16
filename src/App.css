@@ -1,0 +1,192 @@
+body {
+  background: rgb(52, 58, 64) !important;
+  color: white !important;
+}
+
+.card img,
+.modal-xl img,
+.screenshots img,
+.screenshot {
+  width: 100%;
+}
+
+.card {
+  border: 5px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+.movie,
+.media,
+.acc,
+.download {
+  display: flex;
+}
+
+.cardinfo,
+.acc {
+  justify-content: center;
+}
+
+.desc,
+.cardinfo,
+.acc {
+  align-items: center;
+}
+
+.title span {
+  justify-content: space-between;
+}
+
+.notfound {
+  margin: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer {
+  height: 2px;
+  background-image: linear-gradient(
+    to left,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
+}
+
+.page-item:hover {
+  cursor: pointer;
+}
+
+#selected {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.card {
+  z-index: 3;
+}
+
+.cardinfo {
+  position: absolute;
+  background: #0000009e;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  color: white;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.card:hover .cardinfo {
+  opacity: 1;
+}
+
+.fa-star {
+  font-size: 1.5em;
+}
+
+.textintro {
+  text-align: center;
+}
+
+.desc {
+  margin-bottom: -15px;
+}
+
+.desc i {
+  font-size: 1.5em;
+}
+
+.disabled {
+  cursor: not-allowed !important;
+}
+
+.notfound {
+  flex-direction: column;
+}
+
+.movie {
+  padding: 15px;
+}
+
+.breadcrumb {
+  margin-top: 15px;
+}
+
+.poster {
+  padding-right: 15px;
+}
+.poster img {
+  box-shadow: 0px 0px 0px 4px #eee;
+  border-radius: 3px;
+}
+
+.screenshots img {
+  border-radius: 3px;
+}
+
+.screenshots img:hover {
+  cursor: pointer;
+}
+
+.screenshots .col {
+  padding: 5px;
+}
+
+iframe {
+  width: 100%;
+  height: 500px;
+}
+
+.media img {
+  border-radius: 50%;
+}
+
+.media {
+  align-items: center !important;
+}
+
+.acc i {
+  font-size: 2.5em;
+}
+
+.acc {
+  width: 60px;
+  height: 60px;
+  background: #b7b7b7;
+  border-radius: 50%;
+}
+
+@media (max-width: 770px) {
+  .movie,
+  .formgroups {
+    flex-direction: column;
+  }
+
+  .poster {
+    display: flex;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 80%;
+    margin: 1.75rem auto;
+  }
+}
+
+.info .fa-star {
+  font-size: 1em;
+}
+
+.intro {
+  max-width: 550px;
+  margin: auto;
+}
