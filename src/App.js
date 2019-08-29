@@ -2,7 +2,7 @@ import React from "react";
 import Provider from "./assets/Context";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
-import Movie from "./assets/Movie/Movie";
+import Movie from "./assets/Movie/MoviesDesign";
 import Search from "./assets/Search";
 
 import "./App.css";

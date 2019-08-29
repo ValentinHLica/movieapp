@@ -15,7 +15,7 @@ export default function Card(props) {
         <Link to={`/movie/${id}`}>
           <img src={img} onError={errors.bind(this)} alt="Poster" />
 
-          <div className="cardinfo d-flex">
+          <div className="d-flex align-items-center justify-content-center cardinfo">
             <i className="fas fa-star mb-2 text-danger" />
             <h4>
               {rating ? (

@@ -95,9 +95,9 @@ export default function Search() {
               onSubmit={value.addMovies.bind(this)}
               className="intro container"
             >
-              <div className="form-group title">
+              <div className="form-group">
                 <label htmlFor="exampleFormControlInput1">MovieZ</label>
-                <span className="d-flex">
+                <span className="d-flex justify-content-between">
                   <input
                     type="text"
                     className="form-control mr-2"
@@ -136,7 +136,8 @@ export default function Search() {
                     className="btn btn-warning"
                     onClick={value.addMovies.bind(this)}
                   >
-                    <i class="fas fa-ticket-alt mr-2" />Explore Movies
+                    <i className="fas fa-ticket-alt mr-2" />
+                    Explore Movies
                   </button>
                 </span>
               ) : null}

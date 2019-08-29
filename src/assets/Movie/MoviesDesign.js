@@ -1,36 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import errr from "../img/errr.png";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
+import axios from "axios";
 
 export default function MoviesDesign(props) {
+  const [show, setshow] = useState(false);
+  const [type, settype] = useState(null);
+  const [detail, setdetail] = useState({});
+  const [loading, setloading] = useState(true);
+
+  const handleClose = () => {
+    setshow(false);
+  };
+
+  const handleShow = (type, ss) => {
+    if (type === "trailer") {
+      settype("trailer");
+    } else {
+      settype(ss);
+    }
+    setshow(true);
+  };
+
   const {
-    img,
+    medium_cover_image,
     title,
     year,
     genres,
     rating,
     runtime,
-    summary,
+    description_full,
     torrents,
-    yt,
-    ss1m,
-    ss2m,
-    ss3m,
-    ss1l,
-    ss2l,
-    ss3l,
-    cast,
-    show,
-    handleClose,
-    handleShow,
-    type,
-    loading
-  } = props;
+    yt_trailer_code,
+    medium_screenshot_image1,
+    medium_screenshot_image2,
+    medium_screenshot_image3,
+    large_screenshot_image1,
+    large_screenshot_image2,
+    large_screenshot_image3,
+    cast
+  } = detail;
 
-  const ssBig = [ss1l, ss2l, ss3l],
-    ssmed = [ss1m, ss2m, ss3m];
+  const ssBig = [
+      large_screenshot_image1,
+      large_screenshot_image2,
+      large_screenshot_image3
+    ],
+    ssmed = [
+      medium_screenshot_image1,
+      medium_screenshot_image2,
+      medium_screenshot_image3
+    ];
   const errors = e => {
     e.target.src = errr;
   };
@@ -46,12 +68,43 @@ export default function MoviesDesign(props) {
     ];
     return randomNames[Math.floor(Math.random() * (randomNames.length - 1))];
   };
+
+  useEffect(() => {
+    axios
+      .get("https://yts.lt/api/v2/list_movies.json?limit=1")
+      .then(e => {
+        return e.data.data.movies[0].id;
+      })
+
+      .then(e => {
+        if (
+          isNaN(props.match.params.id) ||
+          props.match.params.id > e ||
+          props.match.params.id < 1
+        ) {
+          props.history.push(`/notfound`);
+        } else {
+          axios
+            .get(
+              `https://yts.lt/api/v2/movie_details.json?movie_id=${props.match.params.id}&with_images=true&with_cast=true`
+            )
+            .then(t => {
+              setdetail({ ...t.data.data.movie });
+              setloading(false);
+            })
+            .catch();
+        }
+      })
+      .catch();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <div className="container my-4">
       <Modal show={show} onHide={handleClose} dialogClassName="modal-90w">
         {type === "trailer" ? (
           <iframe
-            src={`https://www.youtube.com/embed/${yt}`}
+            src={`https://www.youtube.com/embed/${yt_trailer_code}`}
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope;"
             allowFullScreen
@@ -64,12 +117,16 @@ export default function MoviesDesign(props) {
 
       {!loading ? (
         <span>
-          <div className="movie">
+          <div className="movie d-flex">
             <div className="poster">
-              <img src={img} onError={errors.bind(this)} alt="Poster" />
+              <img
+                src={medium_cover_image}
+                onError={errors.bind(this)}
+                alt="Poster"
+              />
             </div>
             <div>
-              <h1>{title}</h1>
+              <h1 className="py-2">{title}</h1>
               <div className="info">
                 <p>{year}</p>
                 <p>{genres !== undefined ? genres.join(", ") : null}</p>
@@ -98,7 +155,7 @@ export default function MoviesDesign(props) {
                     )}
                   </p>
                 </span>
-                <div className="download">
+                <div className="d-flex">
                   <Button
                     variant="danger"
                     className="mr-2"
@@ -125,8 +182,8 @@ export default function MoviesDesign(props) {
                 </div>
                 <p className="pt-2">
                   <strong>Summary: </strong>
-                  {summary !== ""
-                    ? summary
+                  {description_full !== ""
+                    ? description_full
                     : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur dolor culpa repellendus repudiandae, autem iure error dignissimos aliquid obcaecati sed maxime recusandae ducimus! Et nostrum est aspernatur magnam quaerat minus illum delectus, placeat, ab unde quasi aliquam provident recusandae explicabo."}
                 </p>
               </div>
@@ -155,20 +212,23 @@ export default function MoviesDesign(props) {
                 <div className="row">
                   {cast !== undefined
                     ? cast.map((e, index) => (
-                        <div className="media col-12 col-sm-6 p-1" key={index}>
+                        <div
+                          className="d-flex align-items-center col-12 col-sm-6 p-1"
+                          key={index}
+                        >
                           {e.url_small_image !== undefined ? (
                             <img
                               src={e.url_small_image}
-                              className="mr-3"
+                              className="mr-3 acc"
                               alt="actor"
                             />
                           ) : (
-                            <div className="acc mr-3">
+                            <div className="d-flex justify-content-center align-items-center mr-3 acc">
                               <i className="far fa-user" />
                             </div>
                           )}
                           <div className="media-body">
-                            {e.name} as{" "}
+                            {e.name} as
                             {e.character_name
                               ? e.character_name
                               : CharaceterNotFoundErr()}

@@ -1,6 +1,5 @@
 body {
-  background: rgb(52, 58, 64) !important;
-  color: white !important;
+  transition: 0.4s background, color;
 }
 
 .card img,
@@ -26,14 +25,9 @@ body {
   justify-content: center;
 }
 
-.desc,
 .cardinfo,
 .acc {
   align-items: center;
-}
-
-.title span {
-  justify-content: space-between;
 }
 
 .notfound {
@@ -124,16 +118,18 @@ footer {
   padding-right: 15px;
 }
 .poster img {
-  box-shadow: 0px 0px 0px 4px #eee;
+  box-shadow: 0px 0px 0px 4px #a5a5a5;
   border-radius: 3px;
 }
 
 .screenshots img {
   border-radius: 3px;
+  transition: 0.4s box-shadow;
 }
 
 .screenshots img:hover {
   cursor: pointer;
+  box-shadow: 0px 0px 0px 4px #a5a5a5;
 }
 
 .screenshots .col {
@@ -160,7 +156,7 @@ iframe {
 .acc {
   width: 60px;
   height: 60px;
-  background: #b7b7b7;
+  background: #a5a5a5;
   border-radius: 50%;
 }
 
@@ -172,6 +168,10 @@ iframe {
 
   .poster {
     display: flex;
+  }
+
+  .mbtn {
+    padding: 0.3rem 0.4rem !important;
   }
 }
 
@@ -189,4 +189,11 @@ iframe {
 .intro {
   max-width: 550px;
   margin: auto;
+}
+
+.darktheme-header {
+  background-color: #dc3545 !important;
+}
+.whitetheme-header {
+  background-color: #f2f2f2 !important;
 }

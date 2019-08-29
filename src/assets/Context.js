@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import "../App.css";
-
 const Context = React.createContext();
 
 export default class Provider extends Component {
   state = {
     data: [],
+    theme: false,
+    changetheme: () => {
+      this.setState({ theme: !this.state.theme });
+      localStorage.setItem("theme", !this.state.theme);
+    },
     options: [
       {
         title: "Quality",
@@ -192,10 +196,31 @@ export default class Provider extends Component {
         pages: [1, 2, 3, 4, 5]
       });
       this.state.fetch(this.state.url(selected));
-    }
+    },
+    white:
+      "background: rgb(255, 255, 255) !important;color: rgb(0, 0, 0) !important;",
+    black: "background: rgb(52, 58, 64) !important;color: white !important;"
   };
 
+  componentDidMount() {
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      if (localStorage.getItem("theme") !== "false") {
+        this.setState({ theme: true });
+        document.body.style = this.state.white;
+      } else {
+        this.setState({ theme: false });
+        document.body.style = this.state.black;
+      }
+    }
+  }
   render() {
+    if (this.state.theme) {
+      document.body.style = this.state.white;
+    } else {
+      document.body.style = this.state.black;
+    }
     return (
       <Context.Provider value={this.state}>
         {this.props.children}
