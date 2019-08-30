@@ -228,7 +228,7 @@ export default function MoviesDesign(props) {
                             </div>
                           )}
                           <div className="media-body">
-                            {e.name} as
+                            {e.name} as{" "}
                             {e.character_name
                               ? e.character_name
                               : CharaceterNotFoundErr()}
