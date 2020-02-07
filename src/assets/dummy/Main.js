@@ -8,11 +8,11 @@ export default function Main() {
   const [mainData, setmainData] = useState([]);
   const [mainLdata, setmainLdata] = useState([]);
   const [loading, setloading] = useState(true);
-  const mainMovies = ["tt3513498", "tt6139732", "tt2283336", "tt0448115"];
+  const mainMovies = ["tt6924650", "tt1950186", "tt8688634", "tt3224458"];
   let data = [];
   const fetcher = (url, state) => {
     axios
-      .get(`https://yts.lt/api/v2/list_movies.json?${url}`)
+      .get(`https://yts.mx/api/v2/list_movies.json?${url}`)
       .then(e => {
         if (state) {
           data = [...e.data.data.movies, ...data];

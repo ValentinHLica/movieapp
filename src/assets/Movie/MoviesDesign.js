@@ -71,7 +71,7 @@ export default function MoviesDesign(props) {
 
   useEffect(() => {
     axios
-      .get("https://yts.lt/api/v2/list_movies.json?limit=1")
+      .get("https://yts.mx/api/v2/list_movies.json?limit=1")
       .then(e => {
         return e.data.data.movies[0].id;
       })
@@ -86,7 +86,7 @@ export default function MoviesDesign(props) {
         } else {
           axios
             .get(
-              `https://yts.lt/api/v2/movie_details.json?movie_id=${props.match.params.id}&with_images=true&with_cast=true`
+              `https://yts.mx/api/v2/movie_details.json?movie_id=${props.match.params.id}&with_images=true&with_cast=true`
             )
             .then(t => {
               setdetail({ ...t.data.data.movie });

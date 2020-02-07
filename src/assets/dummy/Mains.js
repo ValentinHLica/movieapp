@@ -12,7 +12,7 @@ export default class Main extends Component {
 
   abortController = new AbortController();
   fetcher = (url, state) => {
-    fetch(`https://yts.lt/api/v2/list_movies.json?${url}`, {
+    fetch(`https://yts.mx/api/v2/list_movies.json?${url}`, {
       signal: this.abortController.signal
     })
       .then(e => e.json())
