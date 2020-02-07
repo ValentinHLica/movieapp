@@ -69,7 +69,7 @@ export default class Provider extends Component {
       const [quality, genre, rating, order, page, title] = e;
 
       return `
-      https://yts.lt/api/v2/list_movies.json?page=${page}&quality=${quality}&minimum_rating=${rating}&query_term=${title}&genre=${genre}&sort_by=${order}
+      https://yts.mx/api/v2/list_movies.json?page=${page}&quality=${quality}&minimum_rating=${rating}&query_term=${title}&genre=${genre}&sort_by=${order}
       `;
     },
     change: (index, e) => {
